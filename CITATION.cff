@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+title: "pennylane-zksf: PennyLane device for the Zero Kelvin Simulation Foundry"
+doi: 10.5281/zenodo.21851381
+message: "If you use this device or the certification protocols it surfaces in published work, please cite the protocol paper as below."
+type: software
+authors:
+  - name: "ZKSF.org (Zero Kelvin Simulation Foundry)"
+    email: info@zksf.org
+    website: "https://zksf.org"
+  - name: "Digital Venture Labs LLC"
+repository-code: "https://github.com/official-dvl/pennylane-zksf"
+url: "https://zksf.org"
+abstract: >-
+  PennyLane device exposing ZKSF simulation engines, so existing PennyLane
+  circuits run against exact statevector, tensor-network, stabilizer,
+  Pauli-propagation or noisy engines by naming a different device. Every
+  approximate result carries a documented accuracy statement under the ZCC-v0.1
+  protocol, reachable through device.error_info(). PennyLane passes a sequence
+  of tapes to execute whenever it broadcasts, and those are submitted as a
+  single batched request rather than one job each. Deliberately
+  non-differentiable: each execution is a billed cloud job, so differentiating
+  through it would issue shifted tapes and spend money invisibly.
+keywords:
+  - quantum computing
+  - pennylane
+  - pennylane plugin
+  - quantum circuit simulation
+  - tensor networks
+  - error bounds
+  - certification
+license: MIT
+version: 0.1.0
