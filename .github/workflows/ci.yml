@@ -37,7 +37,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        pennylane: ["0.41.*", "0.42.*", "0.43.*", "0.44.*", "0.45.*"]
+        pennylane: ["0.42.*", "0.43.*", "0.44.*", "0.45.*"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -46,7 +46,9 @@ jobs:
       - name: Install with pinned PennyLane
         # The device API and the deprecation timeline for device-level shots
         # both moved during this range, so each is exercised rather than
-        # assumed compatible.
+        # assumed compatible. 0.41 is excluded because it cannot import
+        # against current autoray (NumpyMimic was removed), which is a
+        # PennyLane-side incompatibility, not one this device can fix.
         run: |
           python -m pip install --upgrade pip
           pip install . pytest
