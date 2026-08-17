@@ -3,6 +3,7 @@
 [![CI](https://github.com/official-dvl/pennylane-zksf/actions/workflows/ci.yml/badge.svg)](https://github.com/official-dvl/pennylane-zksf/actions/workflows/ci.yml)
 [![PyPI](https://img.shields.io/pypi/v/pennylane-zksf.svg?v=3)](https://pypi.org/project/pennylane-zksf/)
 [![Python](https://img.shields.io/pypi/pyversions/pennylane-zksf.svg?v=3)](https://pypi.org/project/pennylane-zksf/)
+[![PennyLane](https://img.shields.io/badge/PennyLane-%E2%89%A5%200.42-2D7FF9?logo=pennylane&logoColor=white)](https://github.com/PennyLaneAI/pennylane)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21851381-blue.svg)](https://doi.org/10.5281/zenodo.21851381)
 
