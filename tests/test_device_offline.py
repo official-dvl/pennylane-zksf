@@ -15,6 +15,7 @@ import pytest
 from pennylane.tape import QuantumScript
 
 from pennylane_zksf import ZKSFDevice
+from pennylane_zksf.device import ENGINE_LIMITS, HARDWARE_ENGINES
 
 
 class StubService:
@@ -227,3 +228,46 @@ def test_derivatives_are_declined_rather_than_faked():
     """Each execution is a billed cloud job, so parameter-shift through it
     would spend the user's money without them seeing it."""
     assert ZKSFDevice(wires=2, token="x").supports_derivatives() is False
+
+
+# ------------------------------------------------------- real hardware
+
+@pytest.mark.parametrize(
+    "engine,ceiling",
+    [
+        ("qpu.rigetti", 108),
+        ("qpu.ionq", 36),
+        ("qpu.iqm.emerald", 54),
+        ("qpu.iqm.garnet", 20),
+        ("qpu.aqt.ibex", 12),
+    ],
+)
+def test_every_gate_qpu_is_reachable(engine, ceiling):
+    """Real hardware must be nameable from PennyLane.
+
+    The constructor validates `engine` against ENGINE_LIMITS, and that table
+    once listed only the simulators, so naming any processor raised "unknown
+    engine" and a PennyLane user had no route to a QPU at all. That is the
+    wrong way round: PennyLane is the framework people reach for because of
+    variational work, and variational work is what eventually wants hardware.
+
+    Parameterised one per device so a failure names the processor that went
+    missing rather than reporting that a set comparison failed.
+    """
+    d = ZKSFDevice(wires=2, engine=engine, token="x")
+    assert d._engine == engine
+    assert ENGINE_LIMITS[engine] == ceiling, f"{engine} ceiling drifted"
+
+
+def test_hardware_engines_and_the_limits_table_agree():
+    """HARDWARE_ENGINES is a hand-maintained subset, so pin it to the table.
+
+    Guards the failure this change is about: an engine added to ENGINE_LIMITS
+    but forgotten in HARDWARE_ENGINES, or the reverse.
+    """
+    assert HARDWARE_ENGINES <= set(ENGINE_LIMITS), (
+        f"{HARDWARE_ENGINES - set(ENGINE_LIMITS)} is claimed as hardware but is "
+        f"not a known engine, so it cannot be named"
+    )
+    by_prefix = {e for e in ENGINE_LIMITS if e and e.startswith("qpu.")}
+    assert by_prefix == HARDWARE_ENGINES, f"drifted: {by_prefix ^ HARDWARE_ENGINES}"
