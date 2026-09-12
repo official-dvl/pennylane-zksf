@@ -66,6 +66,30 @@ Name it to pin the choice:
 
 An oversized circuit is refused before it is submitted, not after it is billed.
 
+### Real quantum hardware
+
+Name a processor the same way. These run on the machine rather than a model of
+it, and are billed at the provider's list price:
+
+| engine | qubits | processor |
+|---|---|---|
+| `qpu.rigetti` | 108 | Rigetti Cepheus-1-108Q, superconducting |
+| `qpu.iqm.emerald` | 54 | IQM Emerald, superconducting |
+| `qpu.ionq` | 36 | IonQ Forte Enterprise 1, trapped ion |
+| `qpu.iqm.garnet` | 20 | IQM Garnet, superconducting |
+| `qpu.aqt.ibex` | 12 | AQT IBEX Q1, trapped ion |
+
+```python
+dev = qml.device("zksf.simulator", wires=2, shots=1000,
+                 engine="qpu.iqm.garnet", token=TOKEN)
+```
+
+Hardware results carry a ZHF-v0.1 fidelity rather than a simulation error bound,
+readable through `dev.error_info()` like any other run. The service also offers
+neutral-atom and photonic processors, which take pulse sequences and linear
+optics rather than gate circuits, so they are reachable from `qsim-sdk` and not
+from a PennyLane device.
+
 ## Batching
 
 PennyLane hands `execute` a sequence of tapes whenever it broadcasts or
