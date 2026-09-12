@@ -43,7 +43,24 @@ ENGINE_LIMITS = {
     "mps.aer.cpu": 128,
     "pauli.cpu": 200,
     "noisy.cpu": 20,
+    # Real gate hardware. These were absent, and because the constructor
+    # validates against this table, naming one raised "unknown engine": a
+    # PennyLane user had no route to a QPU at all, which is the opposite of
+    # the point. Ceilings are braket_qpu.DEVICES max_qubits.
+    "qpu.rigetti": 108,         # Rigetti Cepheus-1-108Q, superconducting
+    "qpu.ionq": 36,             # IonQ Forte Enterprise 1, trapped ion
+    "qpu.iqm.emerald": 54,      # IQM Emerald, superconducting
+    "qpu.iqm.garnet": 20,       # IQM Garnet, superconducting
+    "qpu.aqt.ibex": 12,         # AQT IBEX Q1, trapped ion
 }
+
+#: The subset of ENGINE_LIMITS that is real hardware rather than simulation.
+#: Kept as its own name so callers can ask the question without string-matching
+#: on "qpu.", and so a future engine that breaks that prefix convention does
+#: not silently fall out of the set.
+HARDWARE_ENGINES = frozenset(
+    {"qpu.rigetti", "qpu.ionq", "qpu.iqm.emerald", "qpu.iqm.garnet", "qpu.aqt.ibex"}
+)
 
 
 class ZKSFDevice(Device):
