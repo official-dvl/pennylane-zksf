@@ -5,7 +5,8 @@
 [![Python](https://img.shields.io/pypi/pyversions/pennylane-zksf.svg?v=3)](https://pypi.org/project/pennylane-zksf/)
 [![PennyLane](https://img.shields.io/badge/PennyLane-%E2%89%A5%200.42-2D7FF9?logo=pennylane&logoColor=white)](https://github.com/PennyLaneAI/pennylane)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21851381-blue.svg)](https://doi.org/10.5281/zenodo.21851381)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21851380-blue.svg)](https://doi.org/10.5281/zenodo.21851380)
+[![Quantum computing mobile app on Google Play](https://img.shields.io/badge/Mobile_app-Google_Play-34A853?logo=googleplay&logoColor=white)](https://play.google.com/store/apps/details?id=com.quantumcomputing.app)
 
 A PennyLane device for the [ZKSF](https://zksf.org) quantum simulation service.
 
@@ -127,7 +128,7 @@ runs that need the reach or the bound.
 
 - Service and documentation: [zksf.org](https://zksf.org) · [docs](https://zksf.org/docs/)
 - Certification protocol: [zksf.org/quantum-computing-certification](https://zksf.org/quantum-computing-certification/)
-- Specification paper: [doi.org/10.5281/zenodo.21851381](https://doi.org/10.5281/zenodo.21851381)
+- Specification paper: [doi.org/10.5281/zenodo.21851380](https://doi.org/10.5281/zenodo.21851380)
 - Python client: [`qsim-sdk`](https://pypi.org/project/qsim-sdk/) · Qiskit provider: [`qiskit-zksf`](https://pypi.org/project/qiskit-zksf/) · Certificate checker: [`zcc-verify`](https://pypi.org/project/zcc-verify/)
 
 ## Licence
